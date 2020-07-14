@@ -1,5 +1,5 @@
-import ticketAuthApi from '../apis/ticket/auth';
-
+import ticketApi from '../apis/ticket';
+import User from '../schemas/User';
 import AppError from '../errors/AppError';
 import base64Decode from '../utils/base64Decode';
 
@@ -13,16 +13,26 @@ class AuthenticateTicketService {
     try {
       const decodedPassword = base64Decode(password);
 
-      const { data } = await ticketAuthApi.post('/autenticar', {
+      const {
+        data: { id_user: ticketId, access_token: accessToken },
+      } = await ticketApi.post('/autenticar', {
         email,
         password: decodedPassword,
       });
 
-      if (data?.id_user) {
-        return data.id_user;
+      const user = await User.findOne({ email });
+
+      if (user) {
+        return user._id;
       }
 
-      throw new AppError('Failed to retrieve user id.', 500);
+      const { _id: userId } = await User.create({
+        email,
+        ticketId,
+        accessToken,
+      });
+
+      return userId;
     } catch (err) {
       if (err.response?.status === 400) {
         throw new AppError('Incorrect email/password combination.');

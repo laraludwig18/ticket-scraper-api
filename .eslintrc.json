@@ -26,6 +26,7 @@
   "rules": {
     "prettier/prettier": "error",
     "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
     "camelcase": "off",
     "import/extensions": [
       "error",

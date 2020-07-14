@@ -1,16 +1,9 @@
 import { Router } from 'express';
 
-import TicketScraperController from '../controllers/TicketScraperController';
+import ticketRouter from './ticket.routes';
 
-const ticketScraperController = new TicketScraperController();
+const routes = Router();
 
-const router = Router();
+routes.use('/ticket', ticketRouter);
 
-router.post('/ticket/auth', ticketScraperController.authenticate);
-router.get('/ticket/user/:userId', ticketScraperController.getUserData);
-router.get(
-  '/ticket/statement/:userId',
-  ticketScraperController.listCardStatements,
-);
-
-export default router;
+export default routes;
