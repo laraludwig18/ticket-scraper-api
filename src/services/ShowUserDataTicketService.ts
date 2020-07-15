@@ -3,7 +3,6 @@ import AppError from '../errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IUserResponse {
-  id: string;
   email: string;
   name: string;
   phoneNumber: string;
@@ -22,7 +21,7 @@ class ShowUserDataTicketService {
 
       const {
         data: {
-          value: { id, email, name, cellPhone: phoneNumber },
+          value: { email, name, cellPhone: phoneNumber },
         },
       } = await ticketApi.get(`/${user.ticketId}`, {
         headers: {
@@ -30,7 +29,7 @@ class ShowUserDataTicketService {
         },
       });
 
-      return { id, email, name, phoneNumber };
+      return { email, name, phoneNumber };
     } catch (err) {
       if (err.response?.status === 401) {
         throw new AppError('Failed to authenticate on ticket service.', 401);
