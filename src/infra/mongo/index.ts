@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import mongoConfig from '../config/mongo';
+import mongoConfig from '../../config/mongo';
 
 const connectionUrl = `mongodb://${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.database}`;
 

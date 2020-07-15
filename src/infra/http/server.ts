@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import './database';
+import '../mongo';
 
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
@@ -7,7 +7,7 @@ import { errors } from 'celebrate';
 import 'express-async-errors';
 
 import routes from './routes';
-import AppError from './errors/AppError';
+import AppError from '../../errors/AppError';
 
 const app = express();
 

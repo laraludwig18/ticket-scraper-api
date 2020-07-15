@@ -2,8 +2,8 @@
 
 - [x] Salvar dados de autenticação no MongoDB
 - [x] Validar dados da request com celebrate
-- [ ] Generate JWT with user id information
-- [ ] Add middleware to validate JWT content
+- [x] Generate JWT with user id information
+- [x] Add middleware to validate JWT content
 - [ ] Testes unitários
 - [ ] Adicionar collection no insomnia
 - [ ] Melhorar README

@@ -1,8 +1,8 @@
 import ticketApi from '../apis/ticket';
-import User from '../schemas/User';
 import AppError from '../errors/AppError';
+import IUsersRepository from '../repositories/IUsersRepository';
 
-interface IUser {
+interface IUserResponse {
   id: string;
   email: string;
   name: string;
@@ -10,9 +10,11 @@ interface IUser {
 }
 
 class ShowUserDataTicketService {
-  public async execute(userId: string): Promise<IUser> {
+  constructor(private usersRepository: IUsersRepository) {}
+
+  public async execute(userId: string): Promise<IUserResponse> {
     try {
-      const user = await User.findById(userId);
+      const user = await this.usersRepository.findById(userId);
 
       if (!user) {
         throw new AppError('User not found.');

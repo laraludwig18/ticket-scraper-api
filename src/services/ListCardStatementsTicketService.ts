@@ -1,6 +1,6 @@
 import ticketApi from '../apis/ticket';
-import User from '../schemas/User';
 import AppError from '../errors/AppError';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 interface ICardStatement {
   cardType: string;
@@ -21,9 +21,11 @@ interface ICardTicketResponse {
 }
 
 class ListCardStatementsTicketService {
+  constructor(private usersRepository: IUsersRepository) {}
+
   public async execute(userId: string): Promise<ICardStatement[]> {
     try {
-      const user = await User.findById(userId);
+      const user = await this.usersRepository.findById(userId);
 
       if (!user) {
         throw new AppError('User not found.');

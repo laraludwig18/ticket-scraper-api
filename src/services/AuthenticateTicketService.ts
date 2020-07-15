@@ -1,15 +1,20 @@
+import { sign } from 'jsonwebtoken';
+
+import authConfig from '../config/auth';
 import ticketApi from '../apis/ticket';
-import User from '../schemas/User';
 import AppError from '../errors/AppError';
 import base64Decode from '../utils/base64Decode';
+import IUsersRepository from '../repositories/IUsersRepository';
 
-interface IUser {
+interface IUserRequest {
   email: string;
   password: string;
 }
 
 class AuthenticateTicketService {
-  public async execute({ email, password }: IUser): Promise<string> {
+  constructor(private usersRepository: IUsersRepository) {}
+
+  public async execute({ email, password }: IUserRequest): Promise<string> {
     try {
       const decodedPassword = base64Decode(password);
 
@@ -20,19 +25,24 @@ class AuthenticateTicketService {
         password: decodedPassword,
       });
 
-      const user = await User.findOne({ email });
+      let user = await this.usersRepository.findByEmail(email);
 
-      if (user) {
-        return user._id;
+      if (!user) {
+        user = await this.usersRepository.create({
+          email,
+          ticketId,
+          accessToken,
+        });
       }
 
-      const { _id: userId } = await User.create({
-        email,
-        ticketId,
-        accessToken,
+      const { secret, expiresIn } = authConfig;
+
+      const token = sign({}, secret, {
+        subject: String(user._id),
+        expiresIn,
       });
 
-      return userId;
+      return token;
     } catch (err) {
       if (err.response?.status === 400) {
         throw new AppError('Incorrect email/password combination.');
