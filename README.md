@@ -3,7 +3,7 @@
 Backend da aplicação que realiza consulta na api do ticket para obter informações do usuário e do extrato do cartão.
 
 ![CI](https://github.com/laraludwig18/ticket-scraper-api/workflows/CI/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/laraludwig18/gobarber-api/badge.svg?branch=ci-test)](https://coveralls.io/github/laraludwig18/gobarber-api?branch=ci-test)
+[![Coverage Status](https://coveralls.io/repos/github/laraludwig18/ticket-scraper-api/badge.svg?branch=master)](https://coveralls.io/github/laraludwig18/ticket-scraper-api?branch=master)
 
 ## Inicialização
 
