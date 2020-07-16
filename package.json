@@ -4,8 +4,8 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/infra/http/server.js",
     "build": "tsc",
+    "start": "yarn build && node dist/infra/http/server.js",
     "dev": "ts-node-dev --respawn --transpileOnly --ignore-watch node_modules --no-notify src/infra/http/server.ts",
     "test": "jest",
     "check-types": "tsc --noemit",
