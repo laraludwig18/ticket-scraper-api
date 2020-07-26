@@ -8,9 +8,9 @@ steps:
   name: "gcr.io/cloud-builders/docker"
   args: ["ps"]
 
-- id: "Copy .env"
-  name: "gcr.io/cloud-builders/docker"
-  args: ["exec", "-it", "api", "cp", ".env.example", ".env"]
+# - id: "Copy .env"
+#   name: "gcr.io/cloud-builders/docker"
+#   args: ["exec", "-it", "api", "cp", ".env.example", ".env"]
 
 - id: "Run unit tests"
   name: "gcr.io/cloud-builders/docker"
