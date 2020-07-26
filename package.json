@@ -6,12 +6,12 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/infra/http/server.js",
+    "prestart": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly --ignore-watch node_modules --no-notify src/infra/http/server.ts",
     "test": "jest",
     "check-types": "tsc --noemit",
     "lint:fix": "eslint src --ext ts --fix",
     "lint": "eslint src --ext ts && yarn check-types",
-    "postinstall": "yarn build",
     "docs": "redoc-cli serve docs/swagger.yml --watch"
   },
   "dependencies": {

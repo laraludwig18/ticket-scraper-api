@@ -1,0 +1,16 @@
+coverage
+.github
+.git
+.env
+docs
+node_modules
+Dockerfile
+.dockerignore
+.editorconfig
+.env.example
+.eslintrc.json
+.eslintignore
+.gitignore
+prettier.config.json
+package-lock.json
+README.md
