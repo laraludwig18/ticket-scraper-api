@@ -10,9 +10,9 @@ steps:
 
 - id: "Copy .env"
   name: "gcr.io/cloud-builders/docker"
-  args: ["exec", "-t", "api", "cp", ".env.example", ".env"]
+  args: ["exec", "-it", "api", "cp", ".env.example", ".env"]
 
 - id: "Run unit tests"
   name: "gcr.io/cloud-builders/docker"
-  args: ["exec", "-t", "api", "yarn", "test"]
+  args: ["exec", "-it", "api", "yarn", "test"]
 
