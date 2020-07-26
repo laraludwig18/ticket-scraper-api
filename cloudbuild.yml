@@ -1,5 +1,18 @@
 steps:
 
 - id: "Run docker-compose"
-  name: "gcr.io/$PROJECT_ID/docker-compose"
+  name: "gcr.io/$PROJECT_ID/docker-compose:1.25.5"
   args: ["-f", "docker-compose.cloudbuild.yml", "up", "-d"]
+
+- id: "Run docker ps"
+  name: "gcr.io/cloud-builders/docker"
+  args: ["ps"]
+
+- id: "Copy .env"
+  name: "gcr.io/cloud-builders/docker"
+  args: ["exec", "-t", "api", "cp", ".env.example", ".env"]
+
+- id: "Run unit tests"
+  name: "gcr.io/cloud-builders/docker"
+  args: ["exec", "-t", "api", "yarn", "test"]
+
