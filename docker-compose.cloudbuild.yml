@@ -4,12 +4,6 @@ services:
   api:
     build: .
     container_name: api
-    # entrypoint: dockerize -wait tcp://mongo:27017 ./.docker/entrypoint.sh
-    # environment:
-    #   - TICKET_API_URL=https://api.ticket.com.br/mobile/usuarios/v3
-    #   - MONGO_URL=mongodb://mongo:27017/ticket-scraper
-    #   - APP_SECRET=35fc3f38be4eb737942a65ab36c166fd
-    #   - PORT=8080
     restart: unless-stopped
     tty: true
     volumes:
