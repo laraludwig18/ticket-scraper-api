@@ -25,6 +25,7 @@
   ],
   "rules": {
     "prettier/prettier": "error",
+    "@typescript-eslint/ban-ts-comment": "off",
     "class-methods-use-this": "off",
     "no-underscore-dangle": "off",
     "no-useless-constructor": "off",
